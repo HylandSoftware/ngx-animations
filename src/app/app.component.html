@@ -1,13 +1,15 @@
 <button (click)="add()">add</button>
-<button (click)="remove()">delete</button>
+<button (click)="remove()">remove</button>
 <button (click)="replace()">replace</button>
-<select id="" (change)="changeAnimation($event.target.value)">
+
+<select (change)="changeAnimation($event.target.value)">
   <option value="fade">fade-in/out</option>
   <option value="slideFromLeft">slide-in/out from left</option>
   <option value="slideFromRight">slide-in/out from right</option>
   <option value="grow">grow-in/shrink-out</option>
   <option value="swing">swing-in/out</option>
 </select>
+
 <ng-container [ngSwitch]="selectedAnimation">
   <ng-container *ngSwitchCase="'grow'">
     <div class="list-item" [@growInShrinkOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
@@ -25,4 +27,5 @@
     <div class="list-item" [@fadeInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
   </ng-container>
 </ng-container>
-<div style="position:absolute" [@fadeInThenOut]="count">element count: {{count}}</div>
+
+<div [@fadeInThenOut]="count">element count: {{count}}</div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { growInShrinkOut, fadeInThenOut, swingInAndOut, fadeInAndOut,
-  enterAndLeaveFromLeft, enterAndLeaveFromRight } from '../animations';
+  enterAndLeaveFromLeft, enterAndLeaveFromRight } from '../triggers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

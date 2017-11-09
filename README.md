@@ -33,7 +33,7 @@ For greatest simplicity, import 'fadeInAndOutTrigger'. Ad it to the component, a
 ```typescript
 @Component({
   selector: 'my-component',
-  animations: [fadeInAndOutTrigger ]
+  animations: [fadeInAndOut ]
 })
 ```
 
@@ -64,8 +64,8 @@ When importing the animations, you can even add parameters to adjust the duratio
   selector: 'my-component',
   animations: [
     trigger('myTriggerName', [
-      transition(':enter', useAnimation(slideFadeIn,  { params: { time: '500ms', slide: '30px' }})),
-      transition(':leave', useAnimation(slideFadeOut, { params: { time: '1000ms', slide: '-10px' }})),
+      transition(':enter', useAnimation(slideFadeIn,  { params: { time: '500ms', startPos: '300px' }})),
+      transition(':leave', useAnimation(slideFadeOut, { params: { time: '1000ms', endPost: '-100px' }})),
     ])
   ]
 })
