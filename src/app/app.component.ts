@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { growInShrinkOut, fadeInThenOut, swingInAndOut, fadeInAndOut,
-  enterAndLeaveFromLeft, enterAndLeaveFromRight } from '../triggers';
+  enterAndLeaveFromLeft, enterAndLeaveFromRight, bounceInAndOut } from '../triggers';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   animations: [ growInShrinkOut, fadeInThenOut, swingInAndOut,
-    fadeInAndOut, enterAndLeaveFromLeft, enterAndLeaveFromRight ] ,
+    fadeInAndOut, enterAndLeaveFromLeft, enterAndLeaveFromRight, bounceInAndOut ] ,
 })
 export class AppComponent {
   selectedAnimation = 'fade';

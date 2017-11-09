@@ -7,6 +7,7 @@
   <option value="slideFromLeft">slide-in/out from left</option>
   <option value="slideFromRight">slide-in/out from right</option>
   <option value="grow">grow-in/shrink-out</option>
+  <option value="bounce">bounce-in/out</option>
   <option value="swing">swing-in/out</option>
 </select>
 
@@ -25,6 +26,9 @@
   </ng-container>
   <ng-container *ngSwitchCase="'fade'">
     <div class="list-item" [@fadeInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'bounce'">
+    <div class="list-item" [@bounceInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
   </ng-container>
 </ng-container>
 

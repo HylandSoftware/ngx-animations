@@ -113,14 +113,18 @@ export const swingOut = animation(
  * bounce from below
  */
 export const bounceInUp = animation(
-  animate('{{time}} cubic-bezier(0.215, 0.610, 0.355, 1.000)',
-  keyframes([
-    style({ opacity: 0, height: '0px',  transform: 'translate3d(0, 20px, 0)', offset: 0 }),
-    style({ opacity: 1, height: '*',  transform: 'translate3d(0, -20px, 0)', offset: 0.5 }),
-    style({ transform: 'translate3d(0, 10px, 0)', offset: 0.75 }),
-    style({ transform: 'translate3d(0, -5px, 0)', offset: 0.95 }),
-    style({ transform: 'translate3d(0, 0, 0)', offset: 1 }),
-  ])),
+  group([
+    useAnimation(grow),
+    animate('{{time}} cubic-bezier(0.215, 0.610, 0.355, 1.000)',
+      keyframes([
+        style({ opacity: 0, transform: 'translate3d(0, 20px, 0)', offset: 0 }),
+        style({ opacity: 1, transform: 'translate3d(0, -20px, 0)', offset: 0.5 }),
+        style({ transform: 'translate3d(0, 10px, 0)', offset: 0.75 }),
+        style({ transform: 'translate3d(0, -5px, 0)', offset: 0.95 }),
+        style({ transform: 'translate3d(0, 0, 0)', offset: 1 }),
+      ])
+    ),
+  ]),
   {params: {time: '300ms'}}
 );
 
@@ -128,12 +132,14 @@ export const bounceInUp = animation(
  * bounce to below
  */
 export const bounceOutDown = animation(
-  animate('{{time}}',
-  keyframes([
-    style({ transform: 'translate3d(0, -5px, 0)', offset: 0.05 }),
-    style({ height: '0px', overflow: 'visible', transform: 'translate3d(0, 10px, 0)', offset: 0.25 }),
-    style({ opacity: 1,  transform: 'translate3d(0, -20px, 0)', offset: .5 }),
-    style({ opacity: 0,  transform: 'translate3d(0, 20px, 0)', offset: 1 }),
-  ])),
+  [
+    animate('{{time}}', keyframes([
+      style({ transform: 'translate3d(0, -5px, 0)', offset: 0.05 }),
+      style({ transform: 'translate3d(0, 10px, 0)', offset: 0.25 }),
+      style({ opacity: 1,  transform: 'translate3d(0, -20px, 0)', offset: .5 }),
+      style({ opacity: 0,  transform: 'translate3d(0, 20px, 0)', offset: 1 }),
+    ])), 
+    useAnimation(shrink)
+  ],
   {params: {time: '300ms'}}
 );
