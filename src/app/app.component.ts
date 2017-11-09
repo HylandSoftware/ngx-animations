@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { swingInAndOut, fadeInThenOut } from '../animations';
+import { growInShrinkOut, fadeInThenOut, swingInAndOut, fadeInAndOut,
+  enterAndLeaveFromLeft, enterAndLeaveFromRight } from '../animations';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  animations: [ swingInAndOut, fadeInThenOut ] ,
+  styleUrls: ['app.component.css'],
+  animations: [ growInShrinkOut, fadeInThenOut, swingInAndOut,
+    fadeInAndOut, enterAndLeaveFromLeft, enterAndLeaveFromRight ] ,
 })
 export class AppComponent {
+  selectedAnimation = 'fade';
   numbers: number[] = [];
   count = 0;
   constructor() {}
@@ -21,6 +25,9 @@ export class AppComponent {
     this.count = this.numbers.length;
   }
   replace() {
-    this.numbers = [500 + this.count, ...this.numbers.splice(1, this.numbers.length)]
+    this.numbers = [499 + this.count, ...this.numbers.splice(1, this.numbers.length)];
+  }
+  changeAnimation(newAnimation: string) {
+    this.selectedAnimation = newAnimation;
   }
 }

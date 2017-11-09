@@ -1,0 +1,8 @@
+.list-item{
+  border-radius: 5px;
+  width: 200px;
+  padding:15px;
+  margin: 15px;
+  height: 50px; 
+  background-color:lightblue;
+}

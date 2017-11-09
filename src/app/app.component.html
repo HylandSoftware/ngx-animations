@@ -1,8 +1,28 @@
-<h1>
-  Welcome to {{title}}!!
-</h1>
 <button (click)="add()">add</button>
 <button (click)="remove()">delete</button>
 <button (click)="replace()">replace</button>
-<div style="background-color:lightgrey" [@swingInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
-<div style="position:absolute" [@fadeInThenOut]="count">{{count}}</div>
+<select id="" (change)="changeAnimation($event.target.value)">
+  <option value="fade">fade-in/out</option>
+  <option value="slideFromLeft">slide-in/out from left</option>
+  <option value="slideFromRight">slide-in/out from right</option>
+  <option value="grow">grow-in/shrink-out</option>
+  <option value="swing">swing-in/out</option>
+</select>
+<ng-container [ngSwitch]="selectedAnimation">
+  <ng-container *ngSwitchCase="'grow'">
+    <div class="list-item" [@growInShrinkOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'swing'">
+    <div class="list-item" [@swingInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'slideFromLeft'">
+    <div class="list-item" [@enterAndLeaveFromLeft] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'slideFromRight'">
+    <div class="list-item" [@enterAndLeaveFromRight] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'fade'">
+    <div class="list-item" [@fadeInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
+</ng-container>
+<div style="position:absolute" [@fadeInThenOut]="count">element count: {{count}}</div>

@@ -1,7 +1,22 @@
 import { style, animate, animation, AnimationReferenceMetadata, transition,
-  useAnimation, trigger, AnimationTriggerMetadata, keyframes, query, state } from '@angular/animations';
+  useAnimation, trigger, AnimationTriggerMetadata, keyframes, query, state, group } from '@angular/animations';
 /** Many of the following animations were inspired by: (inspired by: https://daneden.github.io/animate.css/) */
 
+
+/**
+ * shrink and grow are used within most enter/leave animations so lists will appropriately slide
+ */
+const shrink = animation(
+  [
+    animate('200ms', style({ height: '0px', paddingTop: '0px', paddingBottom: '0px', marginTop: '0px', marginBottom: '0px' }))
+  ]
+);
+const grow = animation(
+  [
+    style({height: '0px', paddingTop: '0px', paddingBottom: '0px', marginTop: '0px', marginBottom: '0px'}),
+    animate('200ms', style({ height: '*', paddingTop: '*', paddingBottom: '*', marginTop: '*', marginBottom: '*' }))
+  ]
+);
 
 /**
  * fade in while sliding horizontally.
@@ -10,10 +25,13 @@ import { style, animate, animation, AnimationReferenceMetadata, transition,
  */
 export const slideFadeIn = animation(
   [
-    style({ height: '0px', opacity: '0', transform: 'translateX({{startPos}})' }),
-    animate('{{time}}', style({ height: '*', opacity: '1', transform: '*' }))
+    style({ opacity: '0', transform: 'translateX({{startPos}})' }),
+    group([
+      useAnimation(grow),
+      animate('{{time}}', style({ opacity: '1', transform: '*' }))
+    ])
   ],
-  { params: { time: '100ms', startPos: '30px' } }
+  { params: { time: '200ms', startPos: '100%' } }
 );
 
 /**
@@ -22,11 +40,11 @@ export const slideFadeIn = animation(
  * params: duration (string), endPos(string 'Xpx')
  */
 export const slideFadeOut = animation(
-  [
-    style({ height: '*', opacity: '*' }),
-    animate('{{time}}', style({ height: '0px', opacity: '0', transform: 'translateX({{endPos}})' }))
-  ],
-  { params: { time: '100ms', endPos: '30px' } }
+  group([
+    useAnimation(shrink),
+    animate('{{time}}', style({ opacity: '0', transform: 'translateX({{endPos}})' }))
+  ]),
+  { params: { time: '200ms', endPos: '100%' } }
 );
 
 /**
@@ -40,7 +58,7 @@ export const fadeInAndOut = trigger('fadeInAndOut', [
 /**
  * add this trigger to an element to add a simple fade animation, sliding to and from the right when entering or leaving the dom
  */
-export const slideRightFadeInAndOut = trigger('slideRightFadeInAndOut', [
+export const enterAndLeaveFromRight = trigger('enterAndLeaveFromRight', [
   transition(':enter', useAnimation(slideFadeIn)),
   transition(':leave', useAnimation(slideFadeOut))
 ]);
@@ -48,9 +66,9 @@ export const slideRightFadeInAndOut = trigger('slideRightFadeInAndOut', [
 /**
  * add this trigger to an element to add a simple fade animation, sliding to and from the left when entering or leaving the dom
  */
-export const slideLeftFadeInAndOut = trigger('slideLeftFadeInAndOut', [
-  transition(':enter', useAnimation(slideFadeIn, {params: {startPos: '-30px'}})),
-  transition(':leave', useAnimation(slideFadeOut, {params: {endPos: '-30px'}}))
+export const enterAndLeaveFromLeft = trigger('enterAndLeaveFromLeft', [
+  transition(':enter', useAnimation(slideFadeIn, {params: {startPos: '-100%'}})),
+  transition(':leave', useAnimation(slideFadeOut, {params: {endPos: '-100%'}}))
 ]);
 
 /**
@@ -61,9 +79,12 @@ export const slideLeftFadeInAndOut = trigger('slideLeftFadeInAndOut', [
 export const growIn = animation(
   [
     style({ height: '0px', transform: 'scaleY(0)' }),
-    animate('{{time}}', style({ height: '*', transform: '*' }))
+    group([
+      useAnimation(grow),
+      animate('{{time}}', style({ transform: '*' }))
+    ])
   ],
-  { params: { time: '100ms' } }
+  { params: { time: '200ms' } }
 );
 
 /**
@@ -72,11 +93,11 @@ export const growIn = animation(
  *
  */
 export const shrinkOut = animation(
-  [
-    style({ height: '*', transform: '*' }),
-    animate('{{time}}', style({ height: '0px', transform: 'scaleY(0)' }))
-  ],
-  { params: { time: '100ms' } }
+  group([
+    useAnimation(shrink),
+    animate('{{time}}', style({ transform: 'scaleY(0)' }))
+  ]),
+  { params: { time: '200ms' } }
 );
 
 export const growInShrinkOut = trigger('growInShrinkOut', [
@@ -88,14 +109,20 @@ export const growInShrinkOut = trigger('growInShrinkOut', [
  * rotate element in on the X axis as if it is handing on a hinge.
  */
 export const swingIn = animation(
-  animate('{{time}}',
-  keyframes([
-    style({height:'0px', transformOrigin: '50% 0px', transform: 'perspective(500px) rotate3d(1, 0, 0, 90deg)' }),
-    style({height:'*', transform: 'perspective(500px) rotate3d(1, 0, 0, -70deg)' }),
-    style({transform: 'perspective(500px) rotate3d(1, 0, 0, 40deg)' }),
-    style({transform: 'perspective(500px) rotate3d(1, 0, 0, -15deg)' }),
-    style({transform: 'perspective(500px) rotate3d(1, 0, 0, 0deg)' }),
-  ])),
+  [
+    style({transformOrigin: '50% 0px', transform: 'perspective(500px) rotate3d(1, 0, 0, 90deg)' }),
+    group([
+      useAnimation(grow),
+      animate('{{time}}',
+        keyframes([
+          style({transform: 'perspective(500px) rotate3d(1, 0, 0, -70deg)' }),
+          style({transform: 'perspective(500px) rotate3d(1, 0, 0, 40deg)' }),
+          style({transform: 'perspective(500px) rotate3d(1, 0, 0, -15deg)' }),
+          style({transform: 'perspective(500px) rotate3d(1, 0, 0, 0deg)' }),
+        ])
+      )
+    ])
+  ],
   {params: {time: '600ms'}}
 );
 
@@ -103,13 +130,16 @@ export const swingIn = animation(
  * rotate element out on the X axis
  */
 export const swingOut = animation(
+[
   animate( '{{time}}',
-  keyframes([
-    style({height:'*', transformOrigin: '50% 0px', transform: 'perspective(500px) rotate3d(1, 0, 0, 0deg)', offset: 0}),
-    style({transform: 'perspective(500px) rotate3d(1, 0, 0, -30deg)', offset: 0.3}),
-    style({height:'0px', transform: 'perspective(500px) rotate3d(1, 0, 0, 90deg)', offset: 1}),
-  ])
-),
+    keyframes([
+      style({transformOrigin: '50% 0px', transform: 'perspective(500px) rotate3d(1, 0, 0, 0deg)', offset: 0}),
+      style({transform: 'perspective(500px) rotate3d(1, 0, 0, -30deg)', offset: 0.3}),
+      style({transform: 'perspective(500px) rotate3d(1, 0, 0, 90deg)', offset: 1}),
+    ])
+  ),
+  useAnimation(shrink),
+],
 {params: {time: '300ms'}}
 );
 
@@ -143,7 +173,7 @@ export const bounceOutDown = animation(
   animate('{{time}}',
   keyframes([
     style({ transform: 'translate3d(0, -5px, 0)', offset: 0.05 }),
-    style({ height: '0px', overflow:'visible', transform: 'translate3d(0, 10px, 0)', offset: 0.25 }),
+    style({ height: '0px', overflow: 'visible', transform: 'translate3d(0, 10px, 0)', offset: 0.25 }),
     style({ opacity: 1,  transform: 'translate3d(0, -20px, 0)', offset: .5 }),
     style({ opacity: 0,  transform: 'translate3d(0, 20px, 0)', offset: 1 }),
   ])),
