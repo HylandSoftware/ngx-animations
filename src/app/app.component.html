@@ -1,0 +1,8 @@
+<h1>
+  Welcome to {{title}}!!
+</h1>
+<button (click)="add()">add</button>
+<button (click)="remove()">delete</button>
+<button (click)="replace()">replace</button>
+<div style="background-color:lightgrey" [@swingInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
+<div style="position:absolute" [@fadeInThenOut]="count">{{count}}</div>
