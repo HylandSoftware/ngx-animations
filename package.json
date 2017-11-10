@@ -1,5 +1,5 @@
 {
-  "name": "ng-animations-package",
+  "name": "@ngweb/animations",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng-animations-package App', () => {
+describe('ngweb-animations App', () => {
   let page: AppPage;
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-# NgAnimationsPackage
-
+# @ngWeb/animations
+NgAnimationsPackage is the quickest way to get started with Angular animations - without writing your own animations!
 ## Included Animations
 (default params shown in examples)
 ### Animations with special parameters
@@ -10,6 +10,7 @@
 
 ### Animations with no extra parameters
 The following animations only have a time parameter
+
 | Animation Name |
 |----------------|
 |     growIn     |
@@ -24,7 +25,7 @@ The following animations only have a time parameter
 useAnimation(growIn, {params:{time: '200ms'}})
 ```
 
-## Using ng-animations-package
+## Using @ngweb/animations
 
 ### Just give me animations!
 For greatest simplicity, import a trigger such as `fadeInAndOutTrigger`. Add it to the component, and add `[@fadeInAndOut]` to a dom element.
