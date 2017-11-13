@@ -1,0 +1,6 @@
+{
+  "extends": "@ngweb/standards/config/stylelint",
+  "rules": {
+    
+  }
+}

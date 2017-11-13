@@ -1,9 +1,9 @@
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
-import { trigger, transition, useAnimation } from '@angular/animations';
-import { growInShrinkOut, fadeInThenOut, swingInAndOut, fadeInAndOut,
-  enterAndLeaveFromLeft, enterAndLeaveFromRight, bounceInAndOut } from '../triggers';
 import { Observable } from 'rxjs/Observable';
-import { slideFadeIn, slideFadeOut, useSlideFadeOutAnimation, useSlideFadeInAnimation } from '../animations';
+import { slideFadeIn, slideFadeOut, useSlideFadeInAnimation, useSlideFadeOutAnimation } from '../animations';
+import { bounceInAndOut, enterAndLeaveFromLeft, enterAndLeaveFromRight, fadeInAndOut,
+  fadeInThenOut, growInShrinkOut, swingInAndOut } from '../triggers';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +21,8 @@ import { slideFadeIn, slideFadeOut, useSlideFadeOutAnimation, useSlideFadeInAnim
       transition(':enter', useSlideFadeInAnimation('300ms', '20px')),
       // This transition uses useAnimation and passes the parameters directly - accomplishing the same thing as the above function
       transition(':leave', useAnimation(slideFadeOut, {params: {time: '2000ms', endPos: '100px'}})),
-    ])
-  ]
+    ]),
+  ],
 })
 export class AppComponent {
   selectedAnimation = 'fade';

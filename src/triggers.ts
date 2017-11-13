@@ -1,14 +1,13 @@
-import { style, animate, animation, AnimationReferenceMetadata, transition,
-  useAnimation, trigger, AnimationTriggerMetadata, keyframes, query, state, group } from '@angular/animations';
+import { animate, animation, AnimationReferenceMetadata, AnimationTriggerMetadata, group,
+  keyframes, query, state, style, transition, trigger, useAnimation } from '@angular/animations';
 import * as animations from './animations';
-import { useSlideFadeInAnimation } from './animations';
 
 /**
  * BounceInUp and BounceOutDown: (inspired by: https://daneden.github.io/animate.css/)
  */
 export const bounceInAndOut = trigger('bounceInAndOut', [
   transition(':enter', useAnimation(animations.bounceInUp)),
-  transition(':leave', useAnimation(animations.bounceOutDown))
+  transition(':leave', useAnimation(animations.bounceOutDown)),
 ]);
 
 /**
@@ -16,7 +15,7 @@ export const bounceInAndOut = trigger('bounceInAndOut', [
  */
 export const growInShrinkOut = trigger('growInShrinkOut', [
   transition(':enter', useAnimation(animations.growIn)),
-  transition(':leave', useAnimation(animations.shrinkOut))
+  transition(':leave', useAnimation(animations.shrinkOut)),
 ]);
 
 /**
@@ -24,7 +23,7 @@ export const growInShrinkOut = trigger('growInShrinkOut', [
  */
 export const enterAndLeaveFromRight = trigger('enterAndLeaveFromRight', [
   transition(':enter', useAnimation(animations.slideFadeIn)),
-  transition(':leave', useAnimation(animations.slideFadeOut))
+  transition(':leave', useAnimation(animations.slideFadeOut)),
 ]);
 
 /**
@@ -40,7 +39,7 @@ export const enterAndLeaveFromLeft = trigger('enterAndLeaveFromLeft', [
  */
 export const fadeInAndOut = trigger('fadeInAndOut', [
   transition(':enter', animations.useSlideFadeInAnimation(undefined, '0px')),
-  transition(':leave', animations.useSlideFadeOutAnimation( undefined,  '0px'))
+  transition(':leave', animations.useSlideFadeOutAnimation( undefined,  '0px')),
 ]);
 
 /**
