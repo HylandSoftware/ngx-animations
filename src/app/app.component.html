@@ -9,6 +9,7 @@
   <option value="grow">grow-in/shrink-out</option>
   <option value="bounce">bounce-in/out</option>
   <option value="swing">swing-in/out</option>
+  <option value="LTR">enter from left, leave to right</option>
 </select>
 
 <ng-container [ngSwitch]="selectedAnimation">
@@ -30,6 +31,11 @@
   <ng-container *ngSwitchCase="'bounce'">
     <div class="list-item" [@bounceInAndOut] *ngFor="let number of numbers">This is element number: {{number}}</div>
   </ng-container>
+  <ng-container *ngSwitchCase="'LTR'">
+    <div class="list-item" [@enterFromLeftLeaveToRight] *ngFor="let number of numbers">This is element number: {{number}}</div>
+  </ng-container>
 </ng-container>
 
+
+<!-- This animation will trigger any time count changes -->
 <div [@fadeInThenOut]="count">element count: {{count}}</div>

@@ -1,6 +1,7 @@
 import { style, animate, animation, AnimationReferenceMetadata, transition,
   useAnimation, trigger, AnimationTriggerMetadata, keyframes, query, state, group } from '@angular/animations';
 import * as animations from './animations';
+import { useSlideFadeInAnimation } from './animations';
 
 /**
  * BounceInUp and BounceOutDown: (inspired by: https://daneden.github.io/animate.css/)
@@ -30,16 +31,16 @@ export const enterAndLeaveFromRight = trigger('enterAndLeaveFromRight', [
  * add this trigger to an element to add a simple fade animation, sliding to and from the left when entering or leaving
  */
 export const enterAndLeaveFromLeft = trigger('enterAndLeaveFromLeft', [
-  transition(':enter', useAnimation(animations.slideFadeIn, {params: {startPos: '-100%'}})),
-  transition(':leave', useAnimation(animations.slideFadeOut, {params: {endPos: '-100%'}}))
+  transition(':enter', animations.useSlideFadeInAnimation(undefined, '-100%')),
+  transition(':leave', animations.useSlideFadeOutAnimation(undefined, '-100%')),
 ]);
 
 /**
  * add this trigger to an element to add a simple fade animation when entering or leaving the dom
  */
 export const fadeInAndOut = trigger('fadeInAndOut', [
-  transition(':enter', useAnimation(animations.slideFadeIn, {params: {startPos: '0px'}})),
-  transition(':leave', useAnimation(animations.slideFadeOut, {params: {endPos: '0px'}}))
+  transition(':enter', animations.useSlideFadeInAnimation(undefined, '0px')),
+  transition(':leave', animations.useSlideFadeOutAnimation( undefined,  '0px'))
 ]);
 
 /**

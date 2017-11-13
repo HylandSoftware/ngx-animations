@@ -12,11 +12,12 @@
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
-  "dependencies": {
+  "peerDependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0"
   },
   "devDependencies": {
+    "web-animations-js": "^2.3.1",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
