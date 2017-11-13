@@ -33,7 +33,7 @@ export const slideFadeIn = animation(
  * fade in while sliding horizontally.
  *
  * @param time the duration of the animation
- * @param startPos the location that the element should start from before moving to its final position. 
+ * @param startPos the location that the element should start from before moving to its final position.
  * use a negative value to start to the left
  */
 export function useSlideFadeInAnimation(time: string = '200ms', startPos: string = '100%'): AnimationReferenceMetadata {
@@ -53,7 +53,7 @@ export const slideFadeOut = animation([
  * fade out while sliding horizontally.
  *
  * @param time the duration of the animation
- * @param endPos the amount that the element should move (horizontally) by the end of the animation. 
+ * @param endPos the amount that the element should move (horizontally) by the end of the animation.
  * Use a negative value to move left
  */
 export function useSlideFadeOutAnimation(time: string = '200ms', endPos: string = '100%'): AnimationReferenceMetadata {
