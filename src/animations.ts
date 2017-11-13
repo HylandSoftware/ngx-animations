@@ -4,7 +4,7 @@ import { style, animate, animation, AnimationReferenceMetadata, transition,
 
 
 /**
- * shrink and grow are used within most enter/leave animations so lists will appropriately slide
+ * shrink and grow are used within most enter/leave animations so surrounding elements will appropriately slide
  */
 const shrink = animation(
   animate('{{time}}', style({ height: '0px', paddingTop: '0px', paddingBottom: '0px', marginTop: '0px', marginBottom: '0px' })),
@@ -115,7 +115,7 @@ export const swingIn = animation(
  * rotate element in on the X axis as if it is hanging on a hinge.
  * @param time the duration of the animation
  */
-export function useSwingInAnimation(time: string = '200ms'): AnimationReferenceMetadata {
+export function useSwingInAnimation(time: string = '600ms'): AnimationReferenceMetadata {
   return useAnimation(swingIn, {params: {time: time}});
 }
 
@@ -136,7 +136,7 @@ export const swingOut = animation(
  * rotate element out on the X axis until it is facing up and invisible to the user
  * @param time the duration of the animation
  */
-export function useSwingOutAnimation(time: string = '200ms'): AnimationReferenceMetadata {
+export function useSwingOutAnimation(time: string = '300ms'): AnimationReferenceMetadata {
   return useAnimation(swingOut, {params: {time: time}});
 }
 
