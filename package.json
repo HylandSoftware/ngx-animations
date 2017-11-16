@@ -12,6 +12,16 @@
     "packagr": "ng-packagr -p ng-package.json",
     "commit": "git-cz"
   },
+  "keywords": [
+    "ng",
+    "angular",
+    "angular2",
+    "angular4",
+    "angular5",
+    "animation",
+    "ngweb",
+    "animate"
+  ],
   "private": false,
   "peerDependencies": {
     "@angular/animations": ">= 4.3.0",
