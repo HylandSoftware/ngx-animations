@@ -1,9 +1,9 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { slideFadeIn, slideFadeOut, useSlideFadeInAnimation, useSlideFadeOutAnimation } from '../animations';
 import { bounceInAndOut, enterAndLeaveFromLeft, enterAndLeaveFromRight, fadeInAndOut,
-  fadeInThenOut, growInShrinkOut, swingInAndOut } from '../triggers';
+  fadeInThenOut, growInShrinkOut, slideFadeIn, slideFadeOut,
+  swingInAndOut, useSlideFadeInAnimation, useSlideFadeOutAnimation } from 'ngx-animations';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',

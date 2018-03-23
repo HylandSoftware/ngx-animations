@@ -11,13 +11,17 @@
     "component-selector": [
       true,
       "element",
-      ["app"],
+      [
+        "app"
+      ],
       "kebab-case"
     ],
     "directive-selector": [
       true,
       "attribute",
-      ["app"],
+      [
+        "app"
+      ],
       "camelCase"
     ],
     "pipe-naming": [
@@ -25,6 +29,22 @@
       "camelCase",
       "app"
     ]
-    // more project-specific rules
-  }
+  },
+  "rulesDirectory": [
+    "node_modules/@nrwl/schematics/src/tslint"
+  ],
+  "nx-enforce-module-boundaries": [
+    true,
+    {
+      "allow": [],
+      "depConstraints": [
+        {
+          "sourceTag": "*",
+          "onlyDependOnLibsWithTags": [
+            "*"
+          ]
+        }
+      ]
+    }
+  ]
 }

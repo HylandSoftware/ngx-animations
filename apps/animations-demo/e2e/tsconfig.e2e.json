@@ -1,20 +1,20 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/spec",
+    "outDir": "../../../dist/out-tsc/e2e/ngx-animations",
     "baseUrl": "./",
     "module": "commonjs",
     "target": "es5",
     "types": [
       "jasmine",
+      "jasminewd2",
       "node"
     ]
   },
-  "files": [
-    "test.ts"
+  "exclude": [
+    "**/*.spec.ts"
   ],
   "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
+    "../**/*.ts"
   ]
 }
