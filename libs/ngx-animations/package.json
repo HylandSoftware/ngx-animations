@@ -1,0 +1,26 @@
+{
+  "name": "ngx-animations",
+  "version": "0.0.0-beta.0",
+  "license": "MIT",
+  "keywords": [
+    "ng",
+    "angular",
+    "angular2",
+    "angular4",
+    "angular5",
+    "animation",
+    "ngweb",
+    "animate"
+  ],
+  "private": false,
+  "peerDependencies": {
+    "@angular/animations": ">=4.3.0",
+    "@angular/common": ">=4.3.0"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist/libs/ngx-animations"
+  }
+}
