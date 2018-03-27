@@ -1,41 +1,62 @@
 <h1>@NgWeb/Animations</h1>
-<button (click)="add()">add</button>
-<button (click)="remove()">remove</button>
-<button (click)="replace()">replace</button>
+<mat-form-field>
+    <mat-select (change)="changeAnimation($event.value)" placeholder="Animation Type" value="fade">
+      <mat-option value="fade">
+        fade-in/out
+      </mat-option>
+      <mat-option value="grow">
+        grow-in/shrink-out
+      </mat-option>
+      <mat-option value="bounce">
+        bounce-in/out
+      </mat-option>
+      <mat-option value="swing">
+        swing-in/out
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<select (change)="changeAnimation($event.target.value)">
-  <option value="fade">fade-in/out</option>
-  <option value="slideFromLeft">slide-in/out from left</option>
-  <option value="slideFromRight">slide-in/out from right</option>
-  <option value="grow">grow-in/shrink-out</option>
-  <option value="bounce">bounce-in/out</option>
-  <option value="swing">swing-in/out</option>
-  <option value="LTR">enter from left, leave to right</option>
-</select>
+<form>
+  <mat-form-field>
+    <input [disabled]="selectedAnimation!=='fade'" [errorStateMatcher]="selectedAnimation!=='fade'" #startPositionInput placeholder="Entering is Starting Position" matInput type="text" value="0px">
+    <mat-hint *ngIf="selectedAnimation==='fade';else notFadeHint"> % or px value </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input [disabled]="selectedAnimation!=='fade'" #endPositionInput placeholder="Leaving Ending Position" matInput type="text" value="100%">
+    <mat-hint *ngIf="selectedAnimation==='fade';else notFadeHint"> % or px value </mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input #durationInput placeholder="Animation Duration" matInput type="text" value="400ms">
+    <mat-hint>'ms' or 's' value</mat-hint>
+  </mat-form-field>
+</form>
 
-<ng-container [ngSwitch]="selectedAnimation">
-  <ng-container *ngSwitchCase="'grow'">
-    <div class="list-item" animateGrowInShrinkOut *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'swing'">
-    <div class="list-item" animateSwingInAndOut *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'slideFromLeft'">
-    <div class="list-item" [@enterAndLeaveFromLeft] *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'slideFromRight'">
-    <div class="list-item" animateDirectionInAndOut *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'fade'">
-    <div class="list-item" animateFadeInAndOut *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'bounce'">
-    <div class="list-item" animateBounceInAndOut *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'LTR'">
-    <div class="list-item" [@enterFromLeftLeaveToRight] *ngFor="let number of numbers">This is element number: {{number}}</div>
-  </ng-container>
+<ng-template #notFadeHint>paramater only available on fade animation</ng-template>
+
+<mat-form-field>
+  <input #newItemInput matInput type="text" value="Some Item">
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addItem(newItemInput.value)">Add Item</button>
+<button mat-raised-button color="primary" (click)="replaceItem(newItemInput.value)">Replace Top Item</button>
+<ng-container [ngSwitch]="selectedAnimation" *ngFor="let listItem of listItems">
+  <div *ngSwitchCase="'grow'" class="list-item" animateGrowInShrinkOut [animationDuration]="durationInput.value">
+    <ng-container *ngTemplateOutlet="element"></ng-container>
+  </div>
+  <div *ngSwitchCase="'swing'" class="list-item" animateSwingInAndOut [animationDuration]="durationInput.value">
+    <ng-container *ngTemplateOutlet="element"></ng-container>
+  </div>
+  <div *ngSwitchCase="'fade'" class="list-item"
+    animateFadeInAndOut [animationEnterPosition]="startPositionInput.value" [animationLeavePosition]="endPositionInput.value" [animationDuration]="durationInput.value"
+  >
+    <ng-container *ngTemplateOutlet="element"></ng-container>
+  </div>
+  <div *ngSwitchCase="'bounce'" class="list-item" animateBounceInAndOut [animationDuration]="durationInput.value">
+    <ng-container *ngTemplateOutlet="element"></ng-container>
+  </div>
+  <ng-template #element>
+    <div>
+      {{listItem.title}}
+    </div>
+    <button (click)="removeItem(listItem.id)" mat-button color="warn">remove item</button>
+  </ng-template>
 </ng-container>
-
-<!-- This animation will trigger any time count changes -->
-<div [@fadeInThenOut]="count">element count: {{count}}</div>

@@ -135,6 +135,7 @@ export const swingOut = animation(
  * @param time the duration of the animation
  */
 export function useSwingOutAnimation(time: string = '300ms'): AnimationReferenceMetadata {
+  console.log('use swing out time', time);
   return useAnimation(swingOut, {params: {time}});
 }
 
@@ -148,7 +149,7 @@ export const bounceInUp = animation(
       style([{ opacity: 1, transform: 'translate3d(0, -20px, 0)'}, {offset: 0.5 }]),
       style([{ transform: 'translate3d(0, 10px, 0)'}, {offset: 0.75 }]),
       style([{ transform: 'translate3d(0, -5px, 0)'}, {offset: 0.95 }]),
-      style([{ transform: 'translate3d(0, 0, 0)'}, {offset: 1 }]),
+      style(['*', {offset: 1 }]),
     ]),
   ),
 ],
@@ -170,7 +171,7 @@ export const bounceOutDown = animation(
       style([{ opacity: 1,  transform: 'translate3d(0, -20px, 0)'}, {offset: .5 }]),
       style([{ opacity: 0,  transform: 'translate3d(0, 20px, 0)'}, {offset: 1 }]),
     ])),
-    useAnimation(shrink),
+    useAnimation(shrink, {params: {time: '200ms'}}),
   ],
   {params: {time: '300ms'}},
 );

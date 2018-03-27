@@ -5,4 +5,7 @@
   margin: 15px;
   height: 50px;
   background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

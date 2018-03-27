@@ -4,19 +4,38 @@ NgAnimationsPackage is the quickest way to get started with Angular animations -
 ## Using @ngweb/animations
 
 ### Just give me animations!
-For greatest simplicity, import a trigger such as `fadeInAndOut`. Add it to the component, and add `[@fadeInAndOut]` to the DOM element that you would like to animate.
+First, import the animations into the appropriate module.
 ```typescript
-@Component({
-  selector: 'my-component',
-  animations: [ fadeInAndOut ]
+import { NgxAnimationsModule } from 'ngx-animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+@NgModule({
+  ...
+  imports: [ 
+    BrowserAnimationsModule, // This module is required for all Angular animations.
+    NgxAnimationsModule, // This module is only needed when using the animation directives.
+  ],
 })
+export class AppModule { }
 ```
+Then just add the appropriate animation directive to the element you wish to animate.
 ```html
-<a [@fadeInAndOut]></a>
+<a animateFadeInAndOut>Something I want to animate</a>
 ```
+The element will now animate when it is added or removed from the DOM.
+
+You can also change some of the animation's options
+```html
+<a animateFadeInAndOut [animationEnterPosition]="-50px" [animationLeavePosition]="100%" [animationDuration]="500ms">
+  Something I want to animate
+</a>
+```
+The `fadeInAndOut` animation has the options shown above. All other animations only include the `animationDuration` option.
+
 ### Give me more control!
 for more granular customizability, import useSlideFadeIn and useSlideFadeOut animations. These animations can then be added to whatever trigger you choose:
 ```typescript
+import { useSlideFadeInAnimation, useSlideFadeOutAnimation } from 'ngx-animations';
 @Component({
   selector: 'my-component',
   animations: [   
@@ -31,8 +50,10 @@ and in the template:
 <a [@myTriggerName]></a>
 ```
 
-When importing the animations, you can even add parameters to adjust the duration and other properties of the animation:
+When importing the animations, you can add parameters to adjust the duration and other properties of the animation:
 ```typescript
+import { useSlideFadeInAnimation, useSlideFadeOutAnimation } from 'ngx-animations';
+
 @Component({
   selector: 'my-component',
   animations: [
@@ -47,6 +68,8 @@ When importing the animations, you can even add parameters to adjust the duratio
 rather than using the `useAnimationNameAnimation` functions included in this package, you could instead use Angular's `useAnimation` function, passing the appropriate parameters like so:
 
 ```typescript
+import { slideFadeIn, slideFadeOut } from 'ngx-animations';
+
 @Component({
   selector: 'my-component',
   animations: [
@@ -90,23 +113,6 @@ or
 useAnimation(growIn, {params:{time: '200ms'}})
 ```
 
-## Included Triggers
-All of the following triggers include animations described by the trigger. 
-The animations are triggered when the element leaves or exits the DOM.
-
-|  Trigger Name  |
-|----------------|
-| bounceInAndOut  |
-| growInShrinkOut |
-| enterAndLeaveFromRight |
-| enterAndLeaveFromLeft |
-| fadeInAndOut    |
-| swingInAndOut   |
-
-### FadeInThenOut trigger
-Unlike the other triggers, the fadeInThenOut trigger is triggered by a change in value. The value must be set when the trigger is added to the template:
-
-
 ## Demo App
 Follow these instructions to run the demo app.
 
@@ -137,6 +143,6 @@ When you are happy with the changes you have made, commit the updated code to th
 
 ### Contribution Ideas
 Want to contribute, but not sure where to start? Here are some suggestions
-* Take a look at [animations.css]() for inspiration. You can also use the transitions on that site as a starting point for your animations
+* Take a look at [animate.css](https://github.com/daneden/animate.css) for inspiration. You can also use the transitions on that site as a starting point for your animations
 * Make some emphasis transitions. Currently all animations run when the element is added to a view. There could be plenty of uses for animations that transition from an active to inactive state, or for emphasizing elements.
 * Currently, all animations grow and shrink in height, but not in width. See if shrinking width in the current animations works well, or add separate animations that shrink on the X axis.
