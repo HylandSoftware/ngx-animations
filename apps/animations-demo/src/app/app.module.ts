@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
     NgxAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

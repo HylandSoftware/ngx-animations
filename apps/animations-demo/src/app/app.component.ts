@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 
     // The following is a custom trigger using animations from the package.
     // Use this approach if you need to customize the animation or use your own states.
-    // Note that this trigger is not used in the demo site.
+    // Note that this trigger is not used in the template.
     trigger('enterFromLeftLeaveToRight', [
       // this transition uses a function that returns an animation with custom parameters.
       transition(':enter', useSlideFadeInAnimation('300ms', '20px')),
@@ -27,7 +27,6 @@ export class AppComponent {
     {id: 2, title: 'second Item'},
     {id: 3, title: 'third item'},
   ];
-  count = 0;
   nextId = 4;
 
   constructor() {}

@@ -19,11 +19,11 @@
 <form>
   <mat-form-field>
     <input [disabled]="selectedAnimation!=='fade'" [errorStateMatcher]="selectedAnimation!=='fade'" #startPositionInput placeholder="Entering is Starting Position" matInput type="text" value="0px">
-    <mat-hint *ngIf="selectedAnimation==='fade';else notFadeHint"> % or px value </mat-hint>
+    <mat-hint *ngIf="selectedAnimation==='fade'; else notFadeHint"> % or px value </mat-hint>
   </mat-form-field>
   <mat-form-field>
     <input [disabled]="selectedAnimation!=='fade'" #endPositionInput placeholder="Leaving Ending Position" matInput type="text" value="100%">
-    <mat-hint *ngIf="selectedAnimation==='fade';else notFadeHint"> % or px value </mat-hint>
+    <mat-hint *ngIf="selectedAnimation==='fade'; else notFadeHint"> % or px value </mat-hint>
   </mat-form-field>
   <mat-form-field>
     <input #durationInput placeholder="Animation Duration" matInput type="text" value="400ms">
@@ -55,7 +55,7 @@
   </div>
   <ng-template #element>
     <div>
-      {{listItem.title}}
+      {{ listItem.title }}
     </div>
     <button (click)="removeItem(listItem.id)" mat-button color="warn">remove item</button>
   </ng-template>

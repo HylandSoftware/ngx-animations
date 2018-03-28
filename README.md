@@ -1,7 +1,9 @@
-# @ngWeb/animations
-NgAnimationsPackage is the quickest way to get started with Angular animations - without writing your own animations!
+# ngx-animations
+ngx-animations is the quickest way to get started with Angular animations - without writing your own animations!
 
-## Using @ngweb/animations
+Specifically, this package specializes in animations that can be used when adding or removing items from a list.
+
+## Using ngx-animations
 
 ### Just give me animations!
 First, import the animations into the appropriate module.
@@ -123,20 +125,6 @@ Follow these instructions to run the demo app.
 
 ## Contributing
 Contributions are welcome! Continue reading for instructions on how to contribute.
-
-### Branching
-
-All work should be done in a branch (not the master).
-
-Bitbucket web interface (https://bitbucket.hylandqa.net/projects/OB/repos/ngweb-animations/branches):
-1. Click on the three dots (to the left of the "filter branches" box) and click "Create branch from here"
-2. Fill in the information and click "create branch"
-3. If you have not yet done so, clone the project to your local machine
-4. In VS Code, make sure you have the project opened. (If you're not using VS Code, you're on your own)
-5. Run `git fetch` to make sure you have the latest branches available
-6. Click the branch name in the bottom left and select your newly created branch from the list
-
-Once your branch is created, you can make your desired changes to the code.
 
 ### Commit Message
 When you are happy with the changes you have made, commit the updated code to the repository. Commit messages should follow the [material commit message guidelines](https://bitbucket.hylandqa.net/projects/OB/repos/ngweb-animations/branches). It is recommended that you install the [commitizen](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) VS Code extension to help. Alternatively, run `npm run commit` to commit from the command line.
