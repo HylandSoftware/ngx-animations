@@ -28,6 +28,7 @@ export class AppComponent {
     {id: 3, title: 'third item'},
   ];
   nextId = 4;
+  cat = false;
 
   constructor() {}
 

@@ -135,7 +135,6 @@ export const swingOut = animation(
  * @param time the duration of the animation
  */
 export function useSwingOutAnimation(time: string = '300ms'): AnimationReferenceMetadata {
-  console.log('use swing out time', time);
   return useAnimation(swingOut, {params: {time}});
 }
 

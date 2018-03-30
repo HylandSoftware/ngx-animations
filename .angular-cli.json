@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "ngweb-animations",
+    "name": "ngx-animations",
     "npmScope": "ngx-animations",
     "latestMigration": "20180313-add-tags"
   },

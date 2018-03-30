@@ -3,6 +3,8 @@ ngx-animations is the quickest way to get started with Angular animations - with
 
 Specifically, this package specializes in animations that can be used when adding or removing items from a list.
 
+You can view a demo of the site [here](https://ngx-animations-demo.firebaseapp.com/).
+
 ## Using ngx-animations
 
 ### Just give me animations!
@@ -35,7 +37,7 @@ You can also change some of the animation's options
 The `fadeInAndOut` animation has the options shown above. All other animations only include the `animationDuration` option.
 
 ### Give me more control!
-for more granular customizability, import useSlideFadeIn and useSlideFadeOut animations. These animations can then be added to whatever trigger you choose:
+For more granular customizability, import useSlideFadeIn and useSlideFadeOut animations. These animations can then be added to whatever trigger you choose:
 ```typescript
 import { useSlideFadeInAnimation, useSlideFadeOutAnimation } from 'ngx-animations';
 @Component({
@@ -127,10 +129,18 @@ Follow these instructions to run the demo app.
 Contributions are welcome! Continue reading for instructions on how to contribute.
 
 ### Commit Message
-When you are happy with the changes you have made, commit the updated code to the repository. Commit messages should follow the [material commit message guidelines](https://bitbucket.hylandqa.net/projects/OB/repos/ngweb-animations/branches). It is recommended that you install the [commitizen](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) VS Code extension to help. Alternatively, run `npm run commit` to commit from the command line.
+When you are happy with the changes you have made, commit the updated code to the repository. Commit messages should follow the [material commit message guidelines](https://github.com/angular/material2/blob/master/CONTRIBUTING.md#-commit-message-guidelines). It is recommended that you install the [commitizen](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen) VS Code extension to help. Alternatively, run `npm run commit` to commit from the command line.
 
 ### Contribution Ideas
 Want to contribute, but not sure where to start? Here are some suggestions
 * Take a look at [animate.css](https://github.com/daneden/animate.css) for inspiration. You can also use the transitions on that site as a starting point for your animations
 * Make some emphasis transitions. Currently all animations run when the element is added to a view. There could be plenty of uses for animations that transition from an active to inactive state, or for emphasizing elements.
 * Currently, all animations grow and shrink in height, but not in width. See if shrinking width in the current animations works well, or add separate animations that shrink on the X axis.
+
+### Deploying
+The deploy script will not work for anyone who is not signed in to my firebase account. If there is a change to the demo app, tag me (Benjamin Kindle) in an issue.
+
+## Tips
+* If you want to fade between two elements without shrinking and growing, 
+add `position:absolute` and `max-height: [some-height]px` to the proper elements. 
+See the cat picture in the demo site for an example.

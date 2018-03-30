@@ -1,4 +1,4 @@
-<h1>@NgWeb/Animations</h1>
+<h1>ngx-animations</h1>
 <mat-form-field>
     <mat-select (change)="changeAnimation($event.value)" placeholder="Animation Type" value="fade">
       <mat-option value="fade">
@@ -37,7 +37,7 @@
   <input #newItemInput matInput type="text" value="Some Item">
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="addItem(newItemInput.value)">Add Item</button>
-<button mat-raised-button color="primary" (click)="replaceItem(newItemInput.value)">Replace Top Item</button>
+<button mat-raised-button color="white" (click)="replaceItem(newItemInput.value)" >Replace Top Item</button>
 <ng-container [ngSwitch]="selectedAnimation" *ngFor="let listItem of listItems">
   <div *ngSwitchCase="'grow'" class="list-item" animateGrowInShrinkOut [animationDuration]="durationInput.value">
     <ng-container *ngTemplateOutlet="element"></ng-container>
@@ -46,17 +46,28 @@
     <ng-container *ngTemplateOutlet="element"></ng-container>
   </div>
   <div *ngSwitchCase="'fade'" class="list-item"
-    animateFadeInAndOut [animationEnterPosition]="startPositionInput.value" [animationLeavePosition]="endPositionInput.value" [animationDuration]="durationInput.value"
+  animateFadeInAndOut [animationEnterPosition]="startPositionInput.value" [animationLeavePosition]="endPositionInput.value" [animationDuration]="durationInput.value"
   >
-    <ng-container *ngTemplateOutlet="element"></ng-container>
+  <ng-container *ngTemplateOutlet="element"></ng-container>
+</div>
+<div *ngSwitchCase="'bounce'" class="list-item" animateBounceInAndOut [animationDuration]="durationInput.value">
+  <ng-container *ngTemplateOutlet="element"></ng-container>
+</div>
+<ng-template #element>
+  <div>
+    {{ listItem.title }}
   </div>
-  <div *ngSwitchCase="'bounce'" class="list-item" animateBounceInAndOut [animationDuration]="durationInput.value">
-    <ng-container *ngTemplateOutlet="element"></ng-container>
-  </div>
-  <ng-template #element>
-    <div>
-      {{ listItem.title }}
-    </div>
-    <button (click)="removeItem(listItem.id)" mat-button color="warn">remove item</button>
-  </ng-template>
+  <button (click)="removeItem(listItem.id)" mat-button color="warn">remove item</button>
+</ng-template>
 </ng-container>
+
+<button mat-raised-button color="white" (click)="cat=!cat" style="margin:10px;">toggleCats</button>
+<!-- To fade without shrinking, use position:absolute and give the element a min-height; -->
+<div style="height:300px;">
+  <img style="position:absolute; min-height:400px;" 
+    animateFadeInAndOut animationEnterPosition="-100%" animationLeavePosition="100%" animationDuration="600ms" *ngIf="cat" 
+    src="http://78.media.tumblr.com/tumblr_m13l03zGXM1r6b7kmo1_400.jpg" alt="">
+  <img style="position:absolute; min-height:400px;" 
+    animateFadeInAndOut animationEnterPosition="-100%" animationLeavePosition="100%" animationDuration="600ms" *ngIf="!cat" 
+    src="http://78.media.tumblr.com/tumblr_lyxwjwYjIK1r6b7kmo1_500.jpg" alt="">
+</div>
