@@ -125,6 +125,12 @@ Follow these instructions to run the demo app.
 3. Run `ng serve` to serve the project from a live-updating server.
 4. Go to `localhost:4200` to see the demo site
 
+
+## Tips
+* If you want to fade between two elements without shrinking and growing, 
+add `position:absolute` and `max-height: [some-height]px` to the proper elements. 
+See the cat picture in the demo site for an example.
+
 ## Contributing
 Contributions are welcome! Continue reading for instructions on how to contribute.
 
@@ -136,11 +142,3 @@ Want to contribute, but not sure where to start? Here are some suggestions
 * Take a look at [animate.css](https://github.com/daneden/animate.css) for inspiration. You can also use the transitions on that site as a starting point for your animations
 * Make some emphasis transitions. Currently all animations run when the element is added to a view. There could be plenty of uses for animations that transition from an active to inactive state, or for emphasizing elements.
 * Currently, all animations grow and shrink in height, but not in width. See if shrinking width in the current animations works well, or add separate animations that shrink on the X axis.
-
-### Deploying
-The deploy script will not work for anyone who is not signed in to my firebase account. If there is a change to the demo app, tag me (Benjamin Kindle) in an issue.
-
-## Tips
-* If you want to fade between two elements without shrinking and growing, 
-add `position:absolute` and `max-height: [some-height]px` to the proper elements. 
-See the cat picture in the demo site for an example.
