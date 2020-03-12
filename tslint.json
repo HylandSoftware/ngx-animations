@@ -4,18 +4,14 @@
     "rxjs-tslint-rules"
   ],
   "rulesDirectory": [
-    "codelyzer",
-    "node_modules/@nrwl/schematics/src/tslint"
+    "codelyzer"
   ],
   "rules": {
-    // rxjs-tslint
     "rxjs-no-subject-unsubscribe": true,
     "rxjs-no-unused-add": true,
-    // TypeScript
     "arrow-parens": false,
     "import-blacklist": [
       true,
-      "rxjs",
       "rxjs/Rx"
     ],
     "indent": [
@@ -83,29 +79,18 @@
       "check-type-operator",
       "check-preblock"
     ],
-    // Codelyzer
-    "angular-whitespace": [
-      true,
-      "check-interpolation",
-      // TODO: readd after https://github.com/mgechev/codelyzer/issues/412
-      // "check-pipe",
-      "check-semicolon"
-    ],
-    "banana-in-box": true,
+    "template-banana-in-box": true,
     "directive-class-suffix": true,
-    "invoke-injectable": true,
-    "no-attribute-parameter-decorator": true,
+    "no-attribute-decorator": true,
     "no-forward-ref": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "templates-use-public": true,
-    "use-host-property-decorator": true,
-    "use-input-property-decorator": true,
-    "use-life-cycle-interface": true,
-    "use-output-property-decorator": true,
+    "no-host-metadata-property": true,
+    "no-inputs-metadata-property": true,
+    "use-lifecycle-interface": true,
+    "no-outputs-metadata-property": true,
     "use-pipe-decorator": true,
     "use-pipe-transform-interface": true,
-    // Codelyzer (expect an override)
     "component-selector": [
       true,
       "element",
@@ -117,11 +102,6 @@
       "attribute",
       ["app"],
       "camelCase"
-    ],
-    "pipe-naming": [
-      true,
-      "camelCase",
-      "app"
     ],
     "component-class-suffix": [
       true,

@@ -1,6 +1,6 @@
 <h1>ngx-animations</h1>
 <mat-form-field>
-    <mat-select (change)="changeAnimation($event.value)" placeholder="Animation Type" value="fade">
+    <mat-select (selectionChange)="changeAnimation($event.value)" placeholder="Animation Type" value="fade">
       <mat-option value="fade">
         fade-in/out
       </mat-option>

@@ -1,7 +1,6 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
-import { slideFadeIn, slideFadeOut, useSlideFadeInAnimation, useSlideFadeOutAnimation } from 'ngx-animations';
-import { Observable } from 'rxjs/Observable';
+import { slideFadeOut, useSlideFadeInAnimation } from 'ngx-animations';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +40,7 @@ export class AppComponent {
   }
 
   changeAnimation(newAnimation: string) {
+    console.log('animation', newAnimation );
     this.selectedAnimation = newAnimation;
   }
 
